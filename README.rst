@@ -27,6 +27,7 @@ Description
 Offers primitives and simplified interfaces to streamline prototypes construction in Python.
 
 Facilitates:
+
 * Windows construction and management
 * Trackbar construction
 * Configuration save/load (including trackbar values)
