@@ -46,7 +46,7 @@ setup(
     test_suite='tests',
     tests_require=[
         'pytest',
-        'pytest-stub',
+        'pytest-stub>=1.0.0',
     ],
 
     classifiers=[
