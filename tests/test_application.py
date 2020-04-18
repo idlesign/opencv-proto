@@ -1,8 +1,5 @@
-import pytest
 
-from ocvproto.toolbox import *
-
-
-def test_application():
+def test_application(cv_mock):
+    from ocvproto.toolbox import Application
 
     app = Application()
