@@ -3,12 +3,21 @@ from typing import List, Generator, Tuple
 from .window import Window, Trackbar
 from ..app import Application, Config
 from ..backend import cv
+from ..sources._base import TypeFrame
 
 
 class WindowManager:
+    """Manages windows."""
 
     def __init__(self, windows: List[Window] = None, app: Application = None):
+        """
 
+        :param windows: Windows to manage. If not set,
+            one window is automatically constructed.
+
+        :param app: ocvproto application object. Automatically constructed if not set.
+
+        """
         if app is None:
             app = Application()
 
@@ -16,6 +25,7 @@ class WindowManager:
 
         if not windows:
             windows = [Window()]
+
         self._windows = windows
 
         self._bind_trackbar_keys()
@@ -24,11 +34,15 @@ class WindowManager:
 
     def _hooks_bind(self):
         app = self.app
-        app.hook_register('config_save', self.config_save)
+        app.hook_register('config_save', self.config_update)
         app.hook_register('config_load', self.config_load)
 
-    def config_save(self, config: Config):
+    def config_update(self, config: Config):
+        """Updates data gathered from managed windows in the given config.
 
+        :param config:
+
+        """
         data = {}
 
         for window, trackbar in self.iter_trackbars():
@@ -38,6 +52,11 @@ class WindowManager:
         config.set_data('windows', data)
 
     def config_load(self, config: Config):
+        """Updates managed windows using data from the given config.
+
+        :param config:
+
+        """
         windows_data: dict = config.get_data('windows', {})
 
         for window, trackbar in self.iter_trackbars():
@@ -51,6 +70,7 @@ class WindowManager:
                         trackbar.value = trackbar_val
 
     def iter_trackbars(self) -> Generator[Tuple[Window, Trackbar], None, None]:
+        """Generator yielding managed windows and trackbars."""
         for window in self._windows:
             for trackbar in window.trackbars.values():
                 yield window, trackbar
@@ -61,10 +81,11 @@ class WindowManager:
     def __exit__(self, exc_type, exc_val, exc_tb):
         cv.destroyAllWindows()
 
-    def set_frame(self, frame):
+    def set_frame(self, frame: TypeFrame):
         self._windows[0].set_frame(frame)
 
     def render(self):
+        """Renders managed windows."""
         for window in self._windows:
             window.render()
 

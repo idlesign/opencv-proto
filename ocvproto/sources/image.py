@@ -1,11 +1,12 @@
-from ._base import Source
+from ._base import Source, TypeFrame
 from ..backend import cv
 from ..exceptions import SourceError
 
 
 class Image(Source):
+    """Represents an image."""
 
-    def read(self):
+    def read(self) -> TypeFrame:
         frame = cv.imread(self._src)
 
         if frame is None:

@@ -1,21 +1,21 @@
 from pathlib import Path
 from typing import Union
 
-from ._base import Source
+from ._base import Source, TypeFrame
 from .image import Image
 from ..backend import cv
 from ..exceptions import SourceError
 
 
 class Video(Source):
-    """Video source."""
+    """Represents a video."""
 
-    def __init__(self, src):
+    def __init__(self, src: Union[str, TypeFrame]):
         super().__init__(src)
         self._cap = None
         self._writer = None
 
-    def __enter__(self):
+    def __enter__(self) -> 'Video':
         self._cap = cv.VideoCapture(self._src)
         return self
 
@@ -28,6 +28,7 @@ class Video(Source):
             writer.release()
 
     def get_image(self) -> Image:
+        """Returns image object from the current frame."""
         return Image(self.frame)
 
     @property
@@ -64,6 +65,7 @@ class Video(Source):
 
     @property
     def codec(self) -> str:
+        """FOURCC codec alias."""
         val = int(self._cap.get(cv.CAP_PROP_FOURCC))
         return ''.join([chr((val >> 8 * i) & 0xFF) for i in range(4)])
 
@@ -75,8 +77,17 @@ class Video(Source):
             height: int = None,
             fps: Union[int, float] = None,
             codec: str = 'XVID',
-    ):
+    ) -> cv.VideoWriter:
+        """Configures write parameters.
+        Returns opencv writer object.
 
+        :param fpath: Filepath.
+        :param width:
+        :param height:
+        :param fps: Frames per second.
+        :param codec: FOURCC codec alias.
+
+        """
         if codec is None:
             codec = self.codec
 
@@ -91,7 +102,11 @@ class Video(Source):
         self._writer = writer
         return writer
 
-    def write(self, frame=None):
+    def write(self, frame: TypeFrame = None):
+        """Writes the current or the given frame.
+        Automatically configures writer object is needed.
+
+        """
         if frame is None:
             frame = self.frame
 
@@ -101,7 +116,7 @@ class Video(Source):
 
         writer.write(frame)
 
-    def read(self):
+    def read(self) -> TypeFrame:
         success, frame = self._cap.read()
 
         if not success:

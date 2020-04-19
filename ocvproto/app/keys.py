@@ -1,5 +1,6 @@
 
 class Key:
+    """Keys registry."""
 
     BACKSPACE = 8
     ENTER = 13

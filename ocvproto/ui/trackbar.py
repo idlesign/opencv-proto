@@ -1,9 +1,33 @@
+from typing import Union, Callable
+
 from ..backend import cv
+
+TypeNumber = Union[int, float]
 
 
 class Trackbar:
+    """Represents a trackbar."""
 
-    def __init__(self, name, *, max=None, default=None, callback=None, step=None, keys=None):
+    def __init__(
+            self,
+            name,
+            *,
+            max: TypeNumber = None,
+            default: TypeNumber = None,
+            callback: Callable = None,
+            step: TypeNumber = None,
+            keys: str = None
+    ):
+        """
+
+        :param name: Name to show in UI and address this in opencv api.
+        :param max: Max value. Default: 100
+        :param default: Default (current) value. Default: 0
+        :param callback: Function to be called on trackbar value change through UI.
+        :param step: Step to inc/dec trackbar value. Default: 1
+        :param keys: Two-letter string to represent keys to inc and dec value.
+
+        """
         self.name = name
 
         self._default = default or 0
@@ -30,26 +54,36 @@ class Trackbar:
     def __int__(self):
         return int(self.value)
 
-    def bind(self, window_name):
+    def bind(self, window_name: str):
+        """Binds the trackabr to the given window.
+
+        :param window_name:
+
+        """
         self._window_name = window_name
         cv.createTrackbar(self.name, window_name, self._default, self._max, self.callback)
 
     def inc(self):
+        """Increments the current value."""
         self.value += self.step
 
     def dec(self):
+        """Decrements the current value."""
         self.value -= self.step
 
-    def get_value(self):
+    def get_value(self) -> TypeNumber:
+        """Force getting current value."""
         return cv.getTrackbarPos(self.name, self._window_name)
 
-    def _get_value(self):
+    def _get_value(self) -> TypeNumber:
         return self._value
 
-    def _set_value(self, val):
+    def _set_value(self, val: TypeNumber):
         cv.setTrackbarPos(self.name, self._window_name, val)
 
     value = property(_get_value, _set_value)
+    """Current trackbar value."""
 
-    def onChange(self, val):
+    def onChange(self, val: TypeNumber):
+        """Issued on value change from UI."""
         self._value = val

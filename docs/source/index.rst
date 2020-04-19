@@ -16,6 +16,7 @@ Facilitates:
 * Windows construction and management
 * Trackbar construction
 * Configuration save/load (including trackbar values)
+* Key binding (e.g. for trackbar control, configuration save/load)
 * Video capturing and modification
 * Work with images
 * Frames transformation

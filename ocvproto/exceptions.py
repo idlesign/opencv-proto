@@ -3,5 +3,5 @@ class OcvprotoException(Exception):
     """Base ocvproto exception."""
 
 
-class SourceError(Exception):
+class SourceError(OcvprotoException):
     """Error getting source,"""

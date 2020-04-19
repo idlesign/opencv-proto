@@ -5,5 +5,5 @@ import pytest
 def cv_mock(stub):
 
     stub.apply({
-        'cv2': '[mock]',
+        'ocvproto.backend.cv': '[mock]',
     })
