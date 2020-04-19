@@ -9,10 +9,13 @@ class Source:
 
         frame = None
 
-        if src is not None and not isinstance(src, str):
+        if src is not None and not isinstance(src, (str, int)):
             frame, src = src, ''
 
-        self._src = src or ''
+        if src is not 0:
+            src = src or ''
+
+        self._src = src
         self._frame = frame
 
     def _set_frame(self, frame):

@@ -9,6 +9,7 @@ from ..exceptions import SourceError
 
 
 class Video(Source):
+    """Video source."""
 
     def __init__(self, src):
         super().__init__(src)

@@ -1,7 +1,7 @@
 import pytest
 
 
-@pytest.fixture(autouse=True)
+@pytest.fixture
 def cv_mock(stub):
 
     stub.apply({
