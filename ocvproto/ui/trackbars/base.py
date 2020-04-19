@@ -76,7 +76,7 @@ class Trackbar:
         return cv.getTrackbarPos(self.name, self._window_name)
 
     def _get_value(self) -> TypeNumber:
-        return self._value
+        return self._value or self._default
 
     def _set_value(self, val: TypeNumber):
         cv.setTrackbarPos(self.name, self._window_name, val)
