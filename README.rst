@@ -57,10 +57,37 @@ tutorial with ``ocvproto``-based implementation:
             wm.set_frame(Canvas(512, 300, color=rgb).frame)
 
 
+Camera capture
+~~~~~~~~~~~~~~
+
+Now let's capture video camera stream into ``ocvproto.avi`` file, being able to adjust blur.
+
+Let's also setup config filepath (``ocvproto.json``) - this allows us to store current trackbar values
+(``s`` key) and load them (``r`` key). It is useful to restore settings between sessions.
+
+.. code-block:: python
+
+    from ocvproto.toolbox import WindowManager, Camera
+
+    with WindowManager() as wm:
+
+        blur = wm.window.add_trackbar_group(['x', 'y'], 'Blur', default=1)
+        wm.app.set_config('ocvproto.json')
+
+        with Camera() as cam:
+            for _ in wm.app.loop():
+                cam.read()
+                cam.blur(blur)
+                cam.write()
+                wm.set_frame(cam.frame)
+
+
+Read the documentation.
+
 Requirements
 ------------
 * Python 3.6+
-* opencv-python
+* ``opencv-python`` (or variants)
 
 
 Documentation

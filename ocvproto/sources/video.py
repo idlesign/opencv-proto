@@ -71,7 +71,7 @@ class Video(Source):
 
     def write_setup(
             self,
-            fpath: Union[str, Path] = 'out.avi',
+            fpath: Union[str, Path] = 'ocvproto.avi',
             *,
             width: int = None,
             height: int = None,
