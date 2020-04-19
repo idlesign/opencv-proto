@@ -1,10 +1,9 @@
 from pathlib import Path
 from typing import Union
 
-import cv2 as cv
-
 from ._base import Source
 from .image import Image
+from ..backend import cv
 from ..exceptions import SourceError
 
 

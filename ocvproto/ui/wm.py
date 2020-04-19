@@ -1,9 +1,8 @@
 from typing import List, Generator, Tuple
 
-import cv2 as cv
-
 from .window import Window, Trackbar
 from ..app import Application, Config
+from ..backend import cv
 
 
 class WindowManager:

@@ -1,6 +1,6 @@
 from typing import Tuple
 
-import cv2 as cv
+from ..backend import cv
 
 
 class Source:

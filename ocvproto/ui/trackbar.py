@@ -1,4 +1,4 @@
-import cv2 as cv
+from ..backend import cv
 
 
 class Trackbar:

@@ -2,9 +2,8 @@ from functools import reduce
 from operator import ior
 from typing import Union, Dict, List
 
-import cv2 as cv
-
 from .trackbar import Trackbar
+from ..backend import cv
 
 WIN_COUNT = 0
 

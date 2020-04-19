@@ -1,8 +1,7 @@
 from typing import Tuple, Union
 
-import cv2 as cv
-
 from .colors import COLORS
+from ..backend import cv
 
 TypeColor = Union[str, Tuple[int, int , int]]
 

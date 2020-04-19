@@ -1,6 +1,5 @@
-import cv2 as cv
-
 from ._base import Source
+from ..backend import cv
 from ..exceptions import SourceError
 
 

@@ -1,10 +1,9 @@
 from pathlib import Path
 from typing import Callable, Union, Optional, Tuple, List, Dict
 
-import cv2 as cv
-
 from .config import Config
 from .keys import Key
+from ..backend import cv
 
 TypeKey = Union[str, int]
 TypeConfig = Optional[Union[str, Path]]
