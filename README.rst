@@ -37,6 +37,26 @@ Facilitates:
 * Work with text
 * Frames transformation
 
+
+Samples
+-------
+
+Color Palette
+~~~~~~~~~~~~~
+
+Let's replace 37 lines of source code from `Trackbar as the Color Palette <https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_gui/py_trackbar/py_trackbar.html>`_
+tutorial with ``ocvproto``-based implementation:
+
+.. code-block:: python
+
+    from ocvproto.toolbox import WindowManager, Canvas
+
+    with WindowManager() as wm:
+        rgb = wm.window.add_trackbar_group(['R', 'G', 'B'], max=255)
+        for _ in wm.app.loop():
+            wm.set_frame(Canvas(512, 300, color=rgb).frame)
+
+
 Requirements
 ------------
 * Python 3.6+
