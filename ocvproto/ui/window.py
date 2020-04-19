@@ -72,7 +72,7 @@ class Window:
             definitions: Union[int, Dict[str, dict], List[dict], List[str]],
             prefix: str = '',
             **common_kwargs
-    ) -> Tuple[Trackbar, ...]:
+    ) -> Tuple:  # not Tuple[Trackbar, ...] to satisfy typechecker, when passing trackbar as param to ocv functions.
         """A shortcut to batch create trackbars in a declarative way.
 
         :param definitions: Definitions to construct trackbars.
