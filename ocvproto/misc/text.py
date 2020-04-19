@@ -1,10 +1,8 @@
-from typing import Tuple, Union
+from typing import Tuple
 
-from .colors import COLORS
+from .colors import color_to_rgb, TypeColor
 from ..backend import cv
 from ..sources.base import TypeFrame
-
-TypeColor = Union[str, Tuple[int, int , int]]
 
 
 class Text:
@@ -43,14 +41,9 @@ class Text:
         self.val = val or ''
         self.face = self.face_map.get(face, self.face_map['normal'])
         self.scale = scale or 1
-        self.color = self._get_color(color or 'white')
+        self.color = color_to_rgb(color or 'white')
         self.line = 4  # 4, 8, CV_AA
         self.pos = pos or (20, 20)
-
-    def _get_color(self, value: TypeColor):
-        if isinstance(value, str):
-            value = COLORS[value]
-        return value
 
     @classmethod
     def apply_demo(cls, frame: TypeFrame, text: str = 'Test Text 1 2 3 4 5'):
