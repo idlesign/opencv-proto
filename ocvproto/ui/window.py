@@ -2,7 +2,7 @@ from functools import reduce
 from operator import ior
 from typing import Union, Dict, List, Tuple
 
-from .trackbar import Trackbar
+from .trackbars import Trackbar
 from ..backend import cv
 from ..sources._base import TypeFrame
 

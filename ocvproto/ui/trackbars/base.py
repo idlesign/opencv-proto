@@ -1,6 +1,6 @@
 from typing import Union, Callable
 
-from ..backend import cv
+from ...backend import cv
 
 TypeNumber = Union[int, float]
 
