@@ -1,7 +1,7 @@
 from pathlib import Path
 from typing import Union
 
-from ._base import Source, TypeFrame
+from .base import Source, TypeFrame
 from .image import Image
 from ..backend import cv
 from ..exceptions import SourceError

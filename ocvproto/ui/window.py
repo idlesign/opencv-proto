@@ -4,7 +4,7 @@ from typing import Union, Dict, List, Tuple
 
 from .trackbars import Trackbar
 from ..backend import cv
-from ..sources._base import TypeFrame
+from ..sources.base import TypeFrame
 
 WIN_COUNT = 0
 

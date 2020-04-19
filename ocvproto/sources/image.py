@@ -1,4 +1,4 @@
-from ._base import Source, TypeFrame
+from .base import Source, TypeFrame
 from ..backend import cv
 from ..exceptions import SourceError
 

@@ -3,7 +3,7 @@ from typing import List, Generator, Tuple
 from .window import Window, Trackbar
 from ..app import Application, Config
 from ..backend import cv
-from ..sources._base import TypeFrame
+from ..sources.base import TypeFrame
 
 
 class WindowManager:

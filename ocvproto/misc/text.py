@@ -2,7 +2,7 @@ from typing import Tuple, Union
 
 from .colors import COLORS
 from ..backend import cv
-from ..sources._base import TypeFrame
+from ..sources.base import TypeFrame
 
 TypeColor = Union[str, Tuple[int, int , int]]
 
