@@ -37,6 +37,11 @@ class WindowManager:
         app.hook_register('config_save', self.config_update)
         app.hook_register('config_load', self.config_load)
 
+    @property
+    def window(self) -> Window:
+        """Default window."""
+        return self._windows[0]
+
     def config_update(self, config: Config):
         """Updates data gathered from managed windows in the given config.
 
@@ -82,7 +87,12 @@ class WindowManager:
         cv.destroyAllWindows()
 
     def set_frame(self, frame: TypeFrame):
-        self._windows[0].set_frame(frame)
+        """Sets frame to be rendered in default window.
+
+        :param frame:
+
+        """
+        self.window.set_frame(frame)
 
     def render(self):
         """Renders managed windows."""
