@@ -9,12 +9,15 @@ COLORS = {
 """Color aliases to RGB tuples map."""
 
 
-def color_to_rgb(value: TypeColor) -> Tuple[int, int, int]:
+def to_rgb(value: TypeColor) -> Tuple[int, int, int]:
     """Translates the given color value to RGB tuple.
 
     :param value:
 
     """
+    if isinstance(value, tuple):
+        return value
+
     if isinstance(value, int):
         value = (value, value, value)
 

@@ -1,6 +1,6 @@
 from typing import Tuple
 
-from .colors import color_to_rgb, TypeColor
+from .colors import to_rgb, TypeColor
 from ..backend import cv
 from ..sources.base import TypeFrame
 
@@ -41,7 +41,7 @@ class Text:
         self.val = val or ''
         self.face = self.face_map.get(face, self.face_map['normal'])
         self.scale = scale or 1
-        self.color = color_to_rgb(color or 'white')
+        self.color = to_rgb(color or 'white')
         self.line = 4  # 4, 8, CV_AA
         self.pos = pos or (20, 20)
 
