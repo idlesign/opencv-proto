@@ -61,11 +61,11 @@ Let's also setup config filepath (``ocvproto.json``) - this allows us to store c
                 # Now we blur that frame.
                 cam.blur(blur)
 
-                # And we write the frame into the file.
+                # And we dump the frame into the file.
                 # If dumping parameters were not set up before
-                # .write() shortcut will use defaults
+                # .dump() shortcut will use defaults
                 # (e.g. `ocvproto.avi` name, XVID codec).
-                cam.write()
+                cam.dump()
 
                 # Show the frame.
                 wm.set_frame(cam)

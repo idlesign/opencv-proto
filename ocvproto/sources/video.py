@@ -5,6 +5,7 @@ from .base import Source, OcvFrame
 from .image import Image
 from ..backend import cv
 from ..exceptions import SourceError
+from ..frame import AnyFrame
 
 
 class Video(Source):
@@ -69,7 +70,7 @@ class Video(Source):
         val = int(self._cap.get(cv.CAP_PROP_FOURCC))
         return ''.join([chr((val >> 8 * i) & 0xFF) for i in range(4)])
 
-    def write_setup(
+    def dump_setup(
             self,
             fpath: Union[str, Path] = 'ocvproto.avi',
             *,
@@ -102,7 +103,7 @@ class Video(Source):
         self._writer = writer
         return writer
 
-    def write(self, frame: OcvFrame = None):
+    def dump(self, frame: AnyFrame = None):
         """Writes the current or the given frame.
         Automatically configures writer object is needed.
 
@@ -110,9 +111,12 @@ class Video(Source):
         if frame is None:
             frame = self.frame
 
+        else:
+            frame = getattr(frame, 'frame', frame)
+
         writer = self._writer
         if writer is None:
-            writer = self.write_setup()
+            writer = self.dump_setup()
 
         writer.write(frame)
 

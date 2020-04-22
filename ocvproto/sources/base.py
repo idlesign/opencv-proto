@@ -1,12 +1,12 @@
 from typing import Union
 
-from ..frame import Frame, OcvFrame
+from ..frame import Frame, OcvFrame, AnyFrame
 
 
 class Source(Frame):
     """Basic source."""
 
-    def __init__(self, src: Union[int, str, OcvFrame] = None):
+    def __init__(self, src: Union[int, str, AnyFrame] = None):
         """
 
         :param src: Source id (int), path (str) or frame (np array)
@@ -36,4 +36,8 @@ class Source(Frame):
 
     def read(self) -> 'Source':  # pragma: nocover
         """Read and return current frame."""
+        raise NotImplementedError
+
+    def dump(self):  # pragma: nocover
+        """Dump source into a file."""
         raise NotImplementedError

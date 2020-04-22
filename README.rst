@@ -78,7 +78,7 @@ Let's also setup config filepath (``ocvproto.json``) - this allows us to store c
             for _ in wm.app.loop():
                 cam.read()
                 cam.blur(blur)
-                cam.write()
+                cam.dump()
                 wm.set_frame(cam.frame)
 
 
