@@ -2,7 +2,7 @@ from typing import Tuple
 
 from .colors import to_rgb, TypeColor
 from ..backend import cv
-from ..sources.base import TypeFrame
+from ..sources.base import OcvFrame
 
 
 class Text:
@@ -46,7 +46,7 @@ class Text:
         self.pos = pos or (20, 20)
 
     @classmethod
-    def apply_demo(cls, frame: TypeFrame, text: str = 'Test Text 1 2 3 4 5'):
+    def apply_demo(cls, frame: OcvFrame, text: str = 'Test Text 1 2 3 4 5'):
         """Demonstrates available font faces applying all the to a frame.
 
         :param frame: Frame to apply text to.

@@ -4,7 +4,7 @@ from typing import Union, Dict, List, Tuple
 
 from .trackbars import Trackbar
 from ..backend import cv
-from ..sources.base import TypeFrame
+from ..frame import Frame, AnyFrame
 
 WIN_COUNT = 0
 
@@ -135,7 +135,7 @@ class Window:
 
         return tuple(trackbars)
 
-    def set_frame(self, frame: TypeFrame):
+    def set_frame(self, frame: AnyFrame):
         """Sets current frame for the window.
 
         :param frame:
@@ -147,4 +147,4 @@ class Window:
         """Renders window contents."""
         frame = self._frame
         if frame is not None:
-            cv.imshow(self.name, frame)
+            cv.imshow(self.name, getattr(frame, 'frame', frame))

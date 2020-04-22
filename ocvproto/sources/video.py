@@ -1,7 +1,7 @@
 from pathlib import Path
 from typing import Union
 
-from .base import Source, TypeFrame
+from .base import Source, OcvFrame
 from .image import Image
 from ..backend import cv
 from ..exceptions import SourceError
@@ -10,7 +10,7 @@ from ..exceptions import SourceError
 class Video(Source):
     """Represents a video."""
 
-    def __init__(self, src: Union[str, TypeFrame]):
+    def __init__(self, src: Union[str, OcvFrame]):
         super().__init__(src)
         self._cap = None
         self._writer = None
@@ -102,7 +102,7 @@ class Video(Source):
         self._writer = writer
         return writer
 
-    def write(self, frame: TypeFrame = None):
+    def write(self, frame: OcvFrame = None):
         """Writes the current or the given frame.
         Automatically configures writer object is needed.
 
@@ -116,12 +116,10 @@ class Video(Source):
 
         writer.write(frame)
 
-    def read(self) -> TypeFrame:
+    def read(self) -> 'Video':
         success, frame = self._cap.read()
 
         if not success:
             raise SourceError(f"Unable to read from '{self._src}'.")
 
-        self._frame = frame
-
-        return frame
+        return self._set_frame(frame)

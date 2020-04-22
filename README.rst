@@ -54,7 +54,7 @@ tutorial with ``ocvproto``-based implementation:
     with WindowManager() as wm:
         rgb = wm.window.add_trackbar_group(['R', 'G', 'B'], max=255)
         for _ in wm.app.loop():
-            wm.set_frame(Canvas(512, 300, color=rgb).frame)
+            wm.set_frame(Canvas(512, 300, color=rgb))
 
 
 Camera capture

@@ -29,7 +29,7 @@ tutorial with ``ocvproto``-based implementation:
             # Lastly we create a canvas object using RGB value from trackbars,
             # and pass its' frame to .set_frame() shortcut.
             # That shortcut puts the frame into default window.
-            wm.set_frame(Canvas(512, 300, color=rgb).frame)
+            wm.set_frame(Canvas(512, 300, color=rgb))
 
 
 Camera capture
@@ -68,5 +68,5 @@ Let's also setup config filepath (``ocvproto.json``) - this allows us to store c
                 cam.write()
 
                 # Show the frame.
-                wm.set_frame(cam.frame)
+                wm.set_frame(cam)
 

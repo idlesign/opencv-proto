@@ -3,7 +3,7 @@ from typing import List, Generator, Tuple
 from .window import Window, Trackbar
 from ..app import Application, Config
 from ..backend import cv
-from ..sources.base import TypeFrame
+from ..frame import AnyFrame
 
 
 class WindowManager:
@@ -86,7 +86,7 @@ class WindowManager:
     def __exit__(self, exc_type, exc_val, exc_tb):
         cv.destroyAllWindows()
 
-    def set_frame(self, frame: TypeFrame):
+    def set_frame(self, frame: AnyFrame):
         """Sets frame to be rendered in default window.
 
         :param frame:
