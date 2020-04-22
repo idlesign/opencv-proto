@@ -93,6 +93,8 @@ Requirements
 * Python 3.6+
 * ``opencv-python`` (or variants)
 
+Quick install with third-parties: ``$ pip install opencv-proto[all]``
+
 
 Documentation
 -------------

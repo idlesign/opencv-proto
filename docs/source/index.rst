@@ -19,6 +19,7 @@ Facilitates:
 * Key binding (e.g. for trackbar control, configuration save/load)
 * Video capturing and modification
 * Work with images
+* Work with text
 * Frames transformation
 
 
@@ -27,6 +28,8 @@ Requirements
 
 1. Python 3.6+
 2. ``opencv-python`` (or variants)
+
+Quick install with third-parties: ``$ pip install opencv-proto[all]``
 
 
 Table of Contents

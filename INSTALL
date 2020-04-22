@@ -24,8 +24,11 @@ Alternatively you can install ``opencv-proto`` from PyPI:
 
     pip install opencv-proto
 
+    or quick install with third-parties:
+
+    pip install opencv-proto[all]
+
 
 Use `-U` flag for upgrade:
 
     pip install -U opencv-proto
-

@@ -43,6 +43,10 @@ setup(
     install_requires=[],
     setup_requires=(['pytest-runner'] if 'test' in sys.argv else []),
 
+    extras_require={
+        'all':  ['opencv-python'],
+    },
+
     test_suite='tests',
     tests_require=[
         'pytest',
