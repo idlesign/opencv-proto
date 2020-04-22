@@ -83,7 +83,7 @@ We bind ``z`` key to take camera shots.
                 cam.read()
                 cam.blur(blur)
                 cam.dump()
-                wm.set_frame(cam.frame)
+                wm.set_frame(cam)
 
 
 Read the documentation.
