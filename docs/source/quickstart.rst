@@ -40,6 +40,8 @@ Now let's capture video camera stream into ``ocvproto.avi`` file, being able to 
 Let's also setup config filepath (``ocvproto.json``) - this allows us to store current trackbar values
 (``s`` key) and load them (``r`` key). It is useful to restore settings between sessions.
 
+We bind ``z`` key to take camera shots.
+
 .. code-block:: python
 
     from ocvproto.toolbox import WindowManager, Camera
@@ -54,6 +56,11 @@ Let's also setup config filepath (``ocvproto.json``) - this allows us to store c
 
         # We initiate default (first available) camera connection.
         with Camera() as cam:
+
+            # You can bind keys to actions.
+            # Here we bind `z` to trigger .cam.dump_image() to take stills.
+            wm.app.bind_key('z', cam.dump_image)
+
             for _ in wm.app.loop():
                 # Read a frame from camera, we'll work with.
                 cam.read()

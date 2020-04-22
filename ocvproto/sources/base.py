@@ -37,7 +37,3 @@ class Source(Frame):
     def read(self) -> 'Source':  # pragma: nocover
         """Read and return current frame."""
         raise NotImplementedError
-
-    def dump(self):  # pragma: nocover
-        """Dump source into a file."""
-        raise NotImplementedError

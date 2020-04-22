@@ -32,6 +32,15 @@ class Video(Source):
         """Returns image object from the current frame."""
         return Image(self.frame)
 
+    def dump_image(self, fpath: Union[str, Path] = None):
+        """Dumps the image into a file.
+
+        :param fpath: Filepath to store image into.
+            If not set, name is generated automatically.
+
+        """
+        self.get_image().dump(fpath)
+
     @property
     def hue(self) -> int:
         return int(self._cap.get(cv.CAP_PROP_HUE))

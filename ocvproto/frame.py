@@ -1,3 +1,5 @@
+from datetime import datetime
+from pathlib import Path
 from typing import Tuple, Union
 
 from numpy.core.multiarray import ndarray
@@ -25,6 +27,18 @@ class Frame:
     def _set_frame(self, frame: OcvFrame) -> 'Frame':
         self._frame = frame
         return self
+
+    def dump(self, fpath: Union[str, Path] = None):
+        """Dumps frame into a file.
+
+        :param fpath: Filepath to store image into.
+            If not set, name is generated automatically.
+
+        """
+        if not fpath:
+            fpath = f'cov_{datetime.now()}.png'
+
+        cv.imwrite(str(fpath), self.frame)
 
     def fill(self, color: TypeColor):
         """Fills the canvas with the given color.

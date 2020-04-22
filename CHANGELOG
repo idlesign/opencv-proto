@@ -5,6 +5,7 @@ opencv-proto changelog
 Unreleased
 ----------
 + Added Frame abstraction.
++ Added helpers to save images.
 * Video.write() renamed into .dump() as less confusing.
 
 
