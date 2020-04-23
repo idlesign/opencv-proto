@@ -44,7 +44,10 @@ setup(
     setup_requires=(['pytest-runner'] if 'test' in sys.argv else []),
 
     extras_require={
-        'all':  ['opencv-python'],
+        'all':  [
+            'opencv-python',
+            'colorhash',
+        ],
     },
 
     test_suite='tests',
