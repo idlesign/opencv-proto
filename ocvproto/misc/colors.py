@@ -1,6 +1,7 @@
 from typing import Union, Tuple
 
-TypeColor = Union[int, str, Tuple[int, int, int]]
+TypeRgb = Tuple[int, int, int]
+TypeColor = Union[int, str, TypeRgb]
 
 COLORS = {
     'white': (255, 255, 255),
