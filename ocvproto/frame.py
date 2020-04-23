@@ -10,6 +10,7 @@ from .misc.colors import TypeColor, to_rgb
 
 OcvFrame = ndarray
 AnyFrame = Union[OcvFrame, 'Frame']
+TypePoint = Tuple[int, int]
 
 
 class Frame:
@@ -100,3 +101,16 @@ class Frame:
 
         """
         return self._set_frame(cv.blur(self.frame, ksize))
+
+    def draw_rectangle(self, *, pos: TypePoint, width: int, height: int, color: TypeColor = None):
+        """Draws a rectangle.
+
+        :param pos: Top left corner (x, y).
+        :param width:
+        :param height:
+        :param color:
+
+        """
+        x, y = pos
+        return self._set_frame(cv.rectangle(
+            self.frame, pos, (x + width, y + height), to_rgb(color or (255, 255, 255)), -1))
