@@ -4,6 +4,7 @@ opencv-proto changelog
 
 Unreleased
 ----------
++ Added more color names.
 * Now can be installed with the thirdparties: pip install opencv-proto[all].
 
 
