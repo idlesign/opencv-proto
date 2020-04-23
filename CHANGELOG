@@ -5,8 +5,10 @@ opencv-proto changelog
 Unreleased
 ----------
 + Added 'Legend' into primitives subpackage.
++ Added Frame.draw_rectangle().
 + Added more color names.
 * Now can be installed with the thirdparties: pip install opencv-proto[all].
+* Text.apply* renamed into .put_on* for clarity.
 
 
 v0.2.0 [2020-04-22]
