@@ -5,6 +5,10 @@ from ...backend import cv
 TypeNumber = Union[int, float]
 
 
+def noop_callback(value: TypeNumber):
+    return None
+
+
 class Trackbar:
     """Represents a trackbar."""
 
@@ -41,7 +45,7 @@ class Trackbar:
 
         self.step = step or 1
 
-        self.callback = callback or self.onChange
+        self.callback = callback or noop_callback
         self._window_name = None
         self._value = default
 
@@ -61,7 +65,7 @@ class Trackbar:
 
         """
         self._window_name = window_name
-        cv.createTrackbar(self.name, window_name, self._default, self._max, self.callback)
+        cv.createTrackbar(self.name, window_name, int(self._default), self._max, self.onChange)
 
     def inc(self):
         """Increments the current value."""
@@ -86,4 +90,5 @@ class Trackbar:
 
     def onChange(self, val: TypeNumber):
         """Issued on value change from UI."""
+        self.callback(val)
         self._value = val
