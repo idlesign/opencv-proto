@@ -48,14 +48,17 @@ We bind ``z`` key to take camera shots.
 
     with WindowManager() as wm:
 
-        # We create two trackbars to adjust blur.
-        blur = wm.window.add_trackbar_group(['x', 'y'], 'Blur', default=1)
-
         # We instruct our application to store settings into file.
         wm.app.set_config('ocvproto.json')
 
+        # We create two trackbars to adjust blur.
+        blur = wm.window.add_trackbar_group(['x', 'y'], 'Blur', default=1)
+
         # We initiate default (first available) camera connection.
         with Camera() as cam:
+
+            # Let's add trackbars for adjustable camera properties (contrast, brightness, etc.).
+            wm.window.add_trackbar_group(cam.describe_properties(), default=1, max=255)
 
             # You can bind keys to actions.
             # Here we bind `z` to trigger .cam.dump_image() to take stills.

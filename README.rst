@@ -73,8 +73,9 @@ We bind ``z`` key to take camera shots.
 
     with WindowManager() as wm:
 
-        blur = wm.window.add_trackbar_group(['x', 'y'], 'Blur', default=1)
         wm.app.set_config('ocvproto.json')
+
+        blur = wm.window.add_trackbar_group(['x', 'y'], 'Blur', default=1)
 
         with Camera() as cam:
             wm.app.bind_key('z', cam.dump_image)

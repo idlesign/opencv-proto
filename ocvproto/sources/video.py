@@ -70,6 +70,39 @@ class Video(Source):
         val = int(self._cap.get(cv.CAP_PROP_FOURCC))
         return ''.join([chr((val >> 8 * i) & 0xFF) for i in range(4)])
 
+    def set_property(self, name: str, value: int):
+        """Helper method to set property value.
+
+        :param name: Property name.
+        :param value:
+
+        """
+        setattr(self, name, value)
+
+    def describe_properties(self) -> Dict[str, Any]:
+        """Returns descriptions for CV properties found
+        in the class of this object and its bases.
+
+        One can initialize trackbars with these descriptions:
+        see Window.add_trackbar_group()
+
+        """
+        properties = {}
+
+        cls = self.__class__
+        for cls in [cls] + list(cls.__bases__):
+
+            for attr, val in cls.__dict__.items():
+
+                if isinstance(val, Property):
+                    properties[attr] = {
+                        'default': getattr(self, attr),
+                        'callback': partial(self.set_property, attr),
+                        'max': val.max
+                    }
+
+        return properties
+
     def dump_setup(
             self,
             fpath: Union[str, Path] = 'ocvproto.avi',
