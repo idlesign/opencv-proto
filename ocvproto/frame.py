@@ -22,6 +22,14 @@ class Frame:
         self._frame = frame
 
     @property
+    def width(self) -> int:
+        return int(self.frame.shape[1])
+
+    @property
+    def height(self) -> int:
+        return int(self.frame.shape[0])
+
+    @property
     def frame(self) -> OcvFrame:
         return self._frame
 
