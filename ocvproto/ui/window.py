@@ -122,13 +122,9 @@ class Window:
         for title, definition in definitions.items():
             definition = definition or {}
 
-            kwargs = {
-                'keys': definition.get('keys')
-            }
-
             trackbar = Trackbar(
                 f'{prefix}{title}',
-                **{**common_kwargs, **kwargs}
+                **{**common_kwargs, **definition}
             )
             trackbars.append(trackbar)
             self.add_trackbar(trackbar)
