@@ -1,11 +1,26 @@
+from functools import partial
 from pathlib import Path
-from typing import Union
+from typing import Union, Dict, Any
 
 from .base import Source, OcvFrame
 from .image import Image
 from ..backend import cv
 from ..exceptions import SourceError
 from ..frame import AnyFrame
+
+
+class Property:
+    """Represents a capture video property with restrictions."""
+
+    def __init__(self, cv_prop: int, *, max: int = None):
+        self._cv_prop = cv_prop
+        self.max = max
+
+    def __get__(self, instance, cls):
+        return instance._cap.get(self._cv_prop)
+
+    def __set__(self, instance, value):
+        instance._cap.set(self._cv_prop, value)
 
 
 class Video(Source):
@@ -41,37 +56,13 @@ class Video(Source):
         """
         self.get_image().dump(fpath)
 
-    @property
-    def hue(self) -> int:
-        return int(self._cap.get(cv.CAP_PROP_HUE))
-
-    @property
-    def saturation(self) -> int:
-        return int(self._cap.get(cv.CAP_PROP_SATURATION))
-
-    @property
-    def contrast(self) -> int:
-        return int(self._cap.get(cv.CAP_PROP_CONTRAST))
-
-    @property
-    def brightness(self) -> int:
-        return int(self._cap.get(cv.CAP_PROP_BRIGHTNESS))
-
-    @property
-    def pos(self) -> int:
-        return int(self._cap.get(cv.CAP_PROP_POS_MSEC))
-
-    @property
-    def width(self) -> int:
-        return int(self._cap.get(cv.CAP_PROP_FRAME_WIDTH))
-
-    @property
-    def height(self) -> int:
-        return int(self._cap.get(cv.CAP_PROP_FRAME_HEIGHT))
-
-    @property
-    def fps(self) -> Union[int, float]:
-        return self._cap.get(cv.CAP_PROP_FPS)
+    sharpness = Property(cv.CAP_PROP_SHARPNESS)
+    gamma = Property(cv.CAP_PROP_GAMMA)
+    focus = Property(cv.CAP_PROP_FOCUS)
+    zoom = Property(cv.CAP_PROP_ZOOM)
+    width = Property(cv.CAP_PROP_FRAME_WIDTH, max=4096)
+    height = Property(cv.CAP_PROP_FRAME_HEIGHT, max=3072)
+    fps = Property(cv.CAP_PROP_FPS, max=60)
 
     @property
     def codec(self) -> str:

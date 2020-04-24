@@ -1,6 +1,7 @@
 from typing import Union
 
-from .video import Video
+from .video import Video, Property
+from ..backend import cv
 
 
 class Camera(Video):
@@ -18,3 +19,10 @@ class Camera(Video):
 
         """
         super().__init__(src)
+
+    brightness = Property(cv.CAP_PROP_BRIGHTNESS)
+    contrast = Property(cv.CAP_PROP_CONTRAST)
+    saturation = Property(cv.CAP_PROP_SATURATION)
+    hue = Property(cv.CAP_PROP_HUE)
+    gain = Property(cv.CAP_PROP_GAIN)
+    exposure = Property(cv.CAP_PROP_EXPOSURE)
