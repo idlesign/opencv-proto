@@ -57,12 +57,25 @@ class Video(Source):
         self.get_image().dump(fpath)
 
     sharpness = Property(cv.CAP_PROP_SHARPNESS)
+    """Sharpness"""
+
     gamma = Property(cv.CAP_PROP_GAMMA)
+    """Gamma"""
+
     focus = Property(cv.CAP_PROP_FOCUS)
+    """Focus"""
+
     zoom = Property(cv.CAP_PROP_ZOOM)
+    """Zoom"""
+
     width = Property(cv.CAP_PROP_FRAME_WIDTH, max=4096)
+    """Width"""
+
     height = Property(cv.CAP_PROP_FRAME_HEIGHT, max=3072)
+    """Height"""
+
     fps = Property(cv.CAP_PROP_FPS, max=60)
+    """FPS"""
 
     @property
     def codec(self) -> str:

@@ -48,7 +48,7 @@ class Text:
 
     @classmethod
     def put_on_demo(cls, frame: OcvFrame, text: str = 'Test Text 1 2 3 4 5'):
-        """Demonstrates available font faces applying all the to a frame.
+        """Demonstrates available font faces applying all of them to the frame.
 
         :param frame: Frame to apply text to.
         :param text: Text value to on frame.

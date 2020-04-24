@@ -1,6 +1,6 @@
 
 class Key:
-    """Keys registry."""
+    """Keys registry. Can be used for binding actions."""
 
     BACKSPACE = 8
     ENTER = 13

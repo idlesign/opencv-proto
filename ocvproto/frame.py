@@ -23,10 +23,12 @@ class Frame:
 
     @property
     def width(self) -> int:
+        """Width"""
         return int(self.frame.shape[1])
 
     @property
     def height(self) -> int:
+        """Height"""
         return int(self.frame.shape[0])
 
     @property
