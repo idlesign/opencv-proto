@@ -1,6 +1,10 @@
 from typing import Sequence, Dict
 
-from colorhash import ColorHash
+try:
+    from colorhash import ColorHash
+
+except ImportError:
+    raise ImportError('Legend requires `colorhash` library: pip install colorhash')
 
 from ..frame import Frame, TypePoint
 from ..misc.text import Text
