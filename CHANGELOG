@@ -2,8 +2,8 @@ opencv-proto changelog
 ======================
 
 
-Unreleased
-----------
+v0.3.0 [2020-04-24]
+-------------------
 + Added 'Legend' into primitives subpackage.
 + Added .describe_properties() helper to adjust Video/Camera props with trackbars.
 + Added Frame.draw_rectangle().
