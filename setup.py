@@ -24,6 +24,11 @@ def get_version():
     return version
 
 
+DEPS = [
+    'opencv-python',
+    'colorhash',
+]
+
 setup(
     name='opencv-proto',
     version=get_version(),
@@ -44,17 +49,14 @@ setup(
     setup_requires=(['pytest-runner'] if 'test' in sys.argv else []),
 
     extras_require={
-        'all':  [
-            'opencv-python',
-            'colorhash',
-        ],
+        'all':  DEPS,
     },
 
     test_suite='tests',
     tests_require=[
         'pytest',
-        'pytest-stub>=1.0.0',
-    ],
+        'pytest-stub>=1.1.0',
+    ] + DEPS,
 
     classifiers=[
         # As in https://pypi.python.org/pypi?:action=list_classifiers

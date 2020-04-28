@@ -2,13 +2,11 @@ from datetime import datetime
 from pathlib import Path
 from typing import Tuple, Union
 
-from numpy.core.multiarray import ndarray
-
-from .backend import cv
+from .backend import cv, np
 from .misc.colors import TypeColor, to_rgb
 
 
-OcvFrame = ndarray
+OcvFrame = np.core.multiarray.ndarray
 AnyFrame = Union[OcvFrame, 'Frame']
 TypePoint = Tuple[int, int]
 

@@ -52,17 +52,21 @@ class Application:
     def config_save(self):
         """Saves current configuration to config file."""
         config = self._config
-        for hook in self._hooks['config_save']:
-            hook(config)
-        config.save()
+
+        if config:
+            for hook in self._hooks['config_save']:
+                hook(config)
+            config.save()
 
     def config_load(self):
         """Loads a configuration from config file."""
         config = self._config
-        config.load()
 
-        for hook in self._hooks['config_load']:
-            hook(config)
+        if config:
+            config.load()
+
+            for hook in self._hooks['config_load']:
+                hook(config)
 
     def hook_register(self, key: str, func: Callable):
         """Registers a hook.

@@ -1,3 +1,4 @@
+from pathlib import Path
 from typing import Union
 
 from ..frame import Frame, OcvFrame, AnyFrame
@@ -14,8 +15,12 @@ class Source(Frame):
         """
         frame = None
 
-        if src is not None and not isinstance(src, (str, int)):
-            frame, src = src, ''
+        if src is not None:
+            if not isinstance(src, (str, int, Path)):
+                frame, src = src, ''
+
+            elif isinstance(src, Path):
+                src = str(src)
 
         super().__init__(frame)
 

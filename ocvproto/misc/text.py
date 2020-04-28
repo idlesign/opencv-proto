@@ -1,7 +1,7 @@
 from .colors import to_rgb, TypeColor
 from ..backend import cv
 from ..frame import TypePoint
-from ..sources.base import OcvFrame
+from ..sources.base import AnyFrame
 
 
 class Text:
@@ -47,7 +47,7 @@ class Text:
         self._pos = pos or (20, 20)
 
     @classmethod
-    def put_on_demo(cls, frame: OcvFrame, text: str = 'Test Text 1 2 3 4 5'):
+    def put_on_demo(cls, frame: AnyFrame, text: str = 'Test Text 1 2 3 4 5'):
         """Demonstrates available font faces applying all of them to the frame.
 
         :param frame: Frame to apply text to.
@@ -57,7 +57,7 @@ class Text:
         for idx, face in enumerate(Text.face_map, 1):
             cls(f'{face}: {text}', face=face, pos=(20, idx * 35)).put_on(frame)
 
-    def put_on(self, frame, text: str = None, *, pos: TypePoint = None):
+    def put_on(self, frame: AnyFrame, text: str = None, *, pos: TypePoint = None):
         """Applies text to the frame.
 
         :param frame: Frame to apply text to.

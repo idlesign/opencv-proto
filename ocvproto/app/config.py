@@ -1,12 +1,12 @@
 import json
 from pathlib import Path
-from typing import Optional, Union, Any
+from typing import Union, Any
 
 
 class Config:
     """Represent an interface to configuration file."""
 
-    def __init__(self, fpath: Optional[Union[str, Path]]):
+    def __init__(self, fpath: Union[str, Path]):
         """
 
         :param fpath: Configuration file path.
@@ -40,9 +40,6 @@ class Config:
         """Saves configuration to file."""
         fpath = self._fpath
 
-        if not fpath:
-            return
-
         with open(str(fpath), 'w') as f:
             f.write(json.dumps(self._data))
 
@@ -50,7 +47,7 @@ class Config:
         """Loads configuration from file."""
         fpath = self._fpath
 
-        if not (fpath and fpath.exists()):
+        if not fpath.exists():
             return
 
         with open(f'{fpath}') as f:
