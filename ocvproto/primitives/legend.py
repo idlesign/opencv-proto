@@ -3,7 +3,7 @@ from typing import Sequence, Dict
 try:
     from colorhash import ColorHash
 
-except ImportError:
+except ImportError:  # pragma: nocover
     raise ImportError('Legend requires `colorhash` library: pip install colorhash')
 
 from ..frame import Frame, TypePoint

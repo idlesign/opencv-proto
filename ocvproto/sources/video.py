@@ -143,8 +143,8 @@ class Video(Source):
         writer = cv.VideoWriter(
             f'{fpath}',
             fcc,
-            fps or self.fps,
-            (width or self.width, height or self.height)
+            fps or int(self.fps),
+            (width or int(self.width), height or int(self.height))
         )
         self._writer = writer
         return writer

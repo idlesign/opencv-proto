@@ -5,7 +5,7 @@ from ...backend import cv
 TypeNumber = Union[int, float]
 
 
-def noop_callback(value: TypeNumber):
+def noop_callback(value: TypeNumber):  # pragma: nocover
     return None
 
 
@@ -40,8 +40,7 @@ class Trackbar:
         self.keys = {}
 
         if keys:
-            assert len(keys) == 2, 'Trackbar `keys` param is expected to be 2 char length.'
-            self.keys = {keys[0]: self.dec, keys[1]: self.inc}
+            self.set_keys(keys)
 
         self.step = step or 1
 
@@ -57,6 +56,15 @@ class Trackbar:
 
     def __int__(self):
         return int(self.value)
+
+    def set_keys(self, keys: str):
+        """Set keys to inc/dec trackbar value.
+
+        :param keys: Two-letter string to represent keys to inc and dec value.
+
+        """
+        assert len(keys) == 2, 'Trackbar `keys` param is expected to be 2 char length.'
+        self.keys = {keys[0]: self.dec, keys[1]: self.inc}
 
     def bind(self, window_name: str):
         """Binds the trackabr to the given window.

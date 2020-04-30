@@ -28,7 +28,7 @@ class WindowManager:
 
         self._windows = windows
 
-        self._bind_trackbar_keys()
+        self.bind_trackbar_keys()
         app.set_loop_func(self.render)
         self._hooks_bind()
 
@@ -99,7 +99,7 @@ class WindowManager:
         for window in self._windows:
             window.render()
 
-    def _bind_trackbar_keys(self):
+    def bind_trackbar_keys(self):
 
         bind = self.app.bind_key
 
