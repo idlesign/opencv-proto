@@ -1,9 +1,11 @@
+from os import environ
+
 import pytest
 
 from ocvproto.toolbox import WindowManager, Window, Application, Canvas, Trackbar
 
 
-@pytest.mark.skip(reason='UI backend may be unavailable')
+@pytest.mark.skipif('TRAVIS' in environ, reason='UI backend may be unavailable')
 def test_wm(tmpdir):
 
     with WindowManager() as wm:
