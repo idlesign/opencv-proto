@@ -2,7 +2,7 @@ from ocvproto.primitives.legend import Legend
 from ocvproto.toolbox import Canvas
 
 
-def test_wm(tmpdir):
+def test_primitives(tmpdir):
     legend = Legend(['a', 'b', 'c'])
     legend.put_on(Canvas())
 
