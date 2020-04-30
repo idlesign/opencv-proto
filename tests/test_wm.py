@@ -1,6 +1,9 @@
+import pytest
+
 from ocvproto.toolbox import WindowManager, Window, Application, Canvas, Trackbar
 
 
+@pytest.mark.xfail(reason='UI backend may be unavailable')
 def test_wm(tmpdir):
 
     with WindowManager() as wm:
