@@ -3,7 +3,7 @@ import pytest
 from ocvproto.toolbox import Window, Trackbar
 
 
-@pytest.mark.xfail(reason='UI backend may be unavailable')
+@pytest.mark.skip(reason='UI backend may be unavailable')
 def test_trackbar(static_path):
 
     win = Window()

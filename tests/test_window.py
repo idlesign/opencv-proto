@@ -2,7 +2,8 @@ import pytest
 
 from ocvproto.toolbox import Window
 
-@pytest.mark.xfail(reason='UI backend may be unavailable')
+
+@pytest.mark.skip(reason='UI backend may be unavailable')
 def test_window():
     win = Window()
     win.create(autosize=False)

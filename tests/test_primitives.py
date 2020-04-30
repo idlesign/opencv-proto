@@ -1,7 +1,10 @@
+import pytest
+
 from ocvproto.primitives.legend import Legend
 from ocvproto.toolbox import Canvas
 
 
+@pytest.mark.skip(reason='UI backend may be unavailable')
 def test_primitives(tmpdir):
     legend = Legend(['a', 'b', 'c'])
     legend.put_on(Canvas())
