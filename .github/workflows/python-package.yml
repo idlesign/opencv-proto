@@ -32,9 +32,11 @@ jobs:
       with:
         version: 0.13.1
         args: check
+    - name: Install xvfb
+      run: sudo apt-get install -y xvfb
     - name: Run tests
       env:
         GITHUB_TOKEN: ${{ secrets.github_token }}
       run: |
-        uv run --no-sync coverage run -m pytest
+        xvfb-run -a uv run --no-sync coverage run -m pytest
         uv run --no-sync coveralls --service=github
