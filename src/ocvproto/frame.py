@@ -37,7 +37,7 @@ class Frame:
         self._frame = frame
         return self
 
-    def dump(self, fpath: Union[str, Path] = None):
+    def dump(self, fpath: Union[str, Path] | None = None):
         """Dumps frame into a file.
 
         :param fpath: Filepath to store image into.
@@ -93,7 +93,7 @@ class Frame:
         """
         return self._set_frame(cv.Canny(self.frame, thr_1, thr_2))
 
-    def dilate(self, element: AnyFrame, iterations: int = None) -> 'Frame':
+    def dilate(self, element: AnyFrame, iterations: int | None = None) -> 'Frame':
         """Dilates the current frame inplace.
 
         :param element:

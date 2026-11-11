@@ -18,9 +18,9 @@ class Trackbar:
             *,
             max: TypeNumber = None,
             default: TypeNumber = None,
-            callback: Callable = None,
+            callback: Callable | None = None,
             step: TypeNumber = None,
-            keys: str = None
+            keys: str | None = None
     ):
         """
 

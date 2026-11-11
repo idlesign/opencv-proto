@@ -1,2 +1,2 @@
-import cv2 as cv  # noqa
-import numpy as np  # noqa
+import cv2 as cv
+import numpy as np

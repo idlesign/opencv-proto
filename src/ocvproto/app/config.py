@@ -40,7 +40,7 @@ class Config:
         """Saves configuration to file."""
         fpath = self._fpath
 
-        with open(str(fpath), 'w') as f:
+        with Path(str(fpath)).open('w') as f:
             f.write(json.dumps(self._data))
 
     def load(self):
@@ -50,5 +50,5 @@ class Config:
         if not fpath.exists():
             return
 
-        with open(f'{fpath}') as f:
+        with fpath.open() as f:
             self._data = json.loads(f.read())

@@ -4,6 +4,7 @@ from ocvproto.exceptions import SourceError
 from ocvproto.toolbox import Video, Image
 
 
+@pytest.mark.xfail(reason='Dumped codec depends on ffmpeg build (XVID vs FMP4)')
 def test_image(static_path, tmpdir):
 
     with pytest.raises(SourceError):

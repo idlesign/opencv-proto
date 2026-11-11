@@ -1,11 +1,8 @@
-opencv-proto documentation
-==========================
-https://github.com/idlesign/opencv-proto
+# opencv-proto
 
+<https://github.com/idlesign/opencv-proto>
 
-
-Description
------------
+## Description
 
 *Allows fast prototyping in Python for OpenCV*
 
@@ -22,21 +19,17 @@ Facilitates:
 * Work with text
 * Frames transformation
 
+## Requirements
 
-Requirements
-------------
+1. Python 3.10+
+2. `opencv-python` (or variants)
 
-1. Python 3.6+
-2. ``opencv-python`` (or variants)
+Quick install with third-parties: `$ pip install opencv-proto[all]`
 
-Quick install with third-parties: ``$ pip install opencv-proto[all]``
+## Get involved into opencv-proto
 
+**Submit issues.** If you spotted something weird in application behavior or want to propose a feature you can do that at <https://github.com/idlesign/opencv-proto/issues>
 
-Table of Contents
------------------
+**Write code.** If you are eager to participate in application development, fork it at <https://github.com/idlesign/opencv-proto>, write your code, whether it should be a bugfix or a feature implementation, and make a pull request right from the forked project page.
 
-.. toctree::
-    :maxdepth: 4
-
-    quickstart
-    api
+**Spread the word.** If you have some tips and tricks or any other words in mind that you think might be of interest for the others — publish them.

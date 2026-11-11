@@ -24,7 +24,7 @@ class Source(Frame):
 
         super().__init__(frame)
 
-        if src is not 0:
+        if src != 0:
             src = src or ''
 
         self._src = src

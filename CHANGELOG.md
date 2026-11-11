@@ -1,25 +1,18 @@
-opencv-proto changelog
-======================
+# opencv-proto changelog
 
+### v0.3.0 [2020-04-24]
+* ++ Added 'Legend' into primitives subpackage.
+* ++ Added .describe_properties() helper to adjust Video/Camera props with trackbars.
+* ++ Added Frame.draw_rectangle().
+* ++ Added more color names.
+* ++ Exposed more adjustable properties for Video and Camera.
+* ** Now can be installed with the thirdparties: pip install opencv-proto[all].
+* ** Text.apply* renamed into .put_on* for clarity.
 
-v0.3.0 [2020-04-24]
--------------------
-+ Added 'Legend' into primitives subpackage.
-+ Added .describe_properties() helper to adjust Video/Camera props with trackbars.
-+ Added Frame.draw_rectangle().
-+ Added more color names.
-+ Exposed more adjustable properties for Video and Camera.
-* Now can be installed with the thirdparties: pip install opencv-proto[all].
-* Text.apply* renamed into .put_on* for clarity.
+### v0.2.0 [2020-04-22]
+* ++ Added Frame abstraction.
+* ++ Added helpers to save images.
+* ** Video.write() renamed into .dump() as less confusing.
 
-
-v0.2.0 [2020-04-22]
--------------------
-+ Added Frame abstraction.
-+ Added helpers to save images.
-* Video.write() renamed into .dump() as less confusing.
-
-
-v0.1.0 [2020-04-19]
--------------------
-+ Basic functionality.
+### v0.1.0 [2020-04-19]
+* ++ Basic functionality.

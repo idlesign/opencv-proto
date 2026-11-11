@@ -28,4 +28,4 @@ def test_trackbar(static_path):
     tb.dec()
     assert tb.get_value() == 3
 
-    assert log == [5, 3]
+    assert log == [3, 5, 3]  # Modern OpenCV fires callback on trackbar creation

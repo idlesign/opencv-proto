@@ -1,12 +1,12 @@
 from pathlib import Path
-from typing import Callable, Union, Optional, Tuple, List, Dict
+from typing import Callable, Union, Tuple, List, Dict
 
 from .config import Config
 from .keys import Key
 from ..backend import cv
 
 TypeKey = Union[str, int]
-TypeConfig = Optional[Union[str, Path]]
+TypeConfig = Union[str, Path, None]
 
 
 class Application:
@@ -18,7 +18,7 @@ class Application:
         :param config: Configuration to be used.
 
         """
-        self._config: Optional[Config] = None
+        self._config: Config | None = None
         self._key_map = {}
         self._loop_func = lambda: None
         self._hooks: Dict[str, List[Callable]] = {
@@ -27,7 +27,7 @@ class Application:
         }
         self.set_config(config)
 
-    def set_config(self, config: TypeConfig, keys: Tuple[TypeKey, TypeKey] = None):
+    def set_config(self, config: TypeConfig, keys: Tuple[TypeKey, TypeKey] | None = None):
         """Sets configuration from the app.
 
         :param config: Configuration object.
@@ -43,7 +43,7 @@ class Application:
         self._bind_config_keys(keys)
         self.config_load()
 
-    def _bind_config_keys(self, keys: Tuple[TypeKey, TypeKey] = None):
+    def _bind_config_keys(self, keys: Tuple[TypeKey, TypeKey] | None = None):
         bind = self.bind_key
         save, load = keys or ('s', 'r')
         bind(save, self.config_save)

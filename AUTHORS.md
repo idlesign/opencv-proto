@@ -1,18 +1,7 @@
-opencv-proto authors
-====================
+# opencv-proto authors
 
 Created by Igor `idle sign` Starikov.
 
-
-Contributors
-------------
+## Contributors
 
 Here could be your name.
-
-
-
-Translators
------------
-
-Here could be your name.
-

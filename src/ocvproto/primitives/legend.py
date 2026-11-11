@@ -4,7 +4,7 @@ try:
     from colorhash import ColorHash
 
 except ImportError:  # pragma: nocover
-    raise ImportError('Legend requires `colorhash` library: pip install colorhash')
+    raise ImportError('Legend requires `colorhash` library: pip install colorhash') from None
 
 from ..frame import Frame, TypePoint
 from ..misc.text import Text
@@ -18,8 +18,8 @@ class Legend:
             self,
             labels: Sequence[str],
             pos: TypePoint = None,
-            width: int = None,
-            gap: int = None
+            width: int | None = None,
+            gap: int | None = None
     ):
         """
 

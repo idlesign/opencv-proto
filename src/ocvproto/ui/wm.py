@@ -9,7 +9,7 @@ from ..frame import AnyFrame
 class WindowManager:
     """Manages windows."""
 
-    def __init__(self, windows: List[Window] = None, app: Application = None):
+    def __init__(self, windows: List[Window] | None = None, app: Application = None):
         """
 
         :param windows: Windows to manage. If not set,
@@ -103,6 +103,6 @@ class WindowManager:
 
         bind = self.app.bind_key
 
-        for window, trackbar in self.iter_trackbars():
+        for _, trackbar in self.iter_trackbars():
             for key, func in trackbar.keys.items():
                 bind(key, func)

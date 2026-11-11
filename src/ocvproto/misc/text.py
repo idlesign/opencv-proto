@@ -21,13 +21,13 @@ class Text:
 
     def __init__(
             self,
-            val: str = None,
+            val: str | None = None,
             *,
-            face: str = None,
-            scale: float = None,
+            face: str | None = None,
+            scale: float | None = None,
             color: TypeColor = None,
             pos: TypePoint = None,
-            weight: int = None
+            weight: int | None = None
     ):
         """
 
@@ -57,7 +57,7 @@ class Text:
         for idx, face in enumerate(Text.face_map, 1):
             cls(f'{face}: {text}', face=face, pos=(20, idx * 35)).put_on(frame)
 
-    def put_on(self, frame: AnyFrame, text: str = None, *, pos: TypePoint = None):
+    def put_on(self, frame: AnyFrame, text: str | None = None, *, pos: TypePoint = None):
         """Applies text to the frame.
 
         :param frame: Frame to apply text to.

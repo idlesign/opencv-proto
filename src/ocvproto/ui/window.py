@@ -4,7 +4,7 @@ from typing import Union, Dict, List, Tuple
 
 from .trackbars import Trackbar
 from ..backend import cv
-from ..frame import Frame, AnyFrame
+from ..frame import AnyFrame
 
 WIN_COUNT = 0
 
@@ -12,7 +12,7 @@ WIN_COUNT = 0
 class Window:
     """Represents a window."""
 
-    def __init__(self, name: str = None):
+    def __init__(self, name: str | None = None):
         """
 
         :param name: Window name. If not set, automatically generated.

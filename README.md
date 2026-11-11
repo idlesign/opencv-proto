@@ -1,26 +1,14 @@
-opencv-proto
-============
-https://github.com/idlesign/opencv-proto
+# opencv-proto
 
-|release| |lic|  |ci| |coverage|
+<https://github.com/idlesign/opencv-proto>
 
-.. |release| image:: https://img.shields.io/pypi/v/opencv-proto.svg
-    :target: https://pypi.python.org/pypi/opencv-proto
-
-.. |lic| image:: https://img.shields.io/pypi/l/opencv-proto.svg
-    :target: https://pypi.python.org/pypi/opencv-proto
-
-.. |ci| image:: https://img.shields.io/travis/idlesign/opencv-proto/master.svg
-    :target: https://travis-ci.org/idlesign/opencv-proto
-
-.. |coverage| image:: https://img.shields.io/coveralls/idlesign/opencv-proto/master.svg
-    :target: https://coveralls.io/r/idlesign/opencv-proto
-
+[![release](https://img.shields.io/pypi/v/opencv-proto.svg)](https://pypi.python.org/pypi/opencv-proto)
+[![lic](https://img.shields.io/pypi/l/opencv-proto.svg)](https://pypi.python.org/pypi/opencv-proto)
+[![coverage](https://img.shields.io/coveralls/idlesign/opencv-proto/master.svg)](https://coveralls.io/r/idlesign/opencv-proto)
 
 **Work in progress. Stay tuned.**
 
-Description
------------
+## Description
 
 *Allows fast prototyping in Python for OpenCV*
 
@@ -37,67 +25,57 @@ Facilitates:
 * Work with text
 * Frames transformation
 
+## Samples
 
-Samples
--------
+### Color Palette
 
-Color Palette
-~~~~~~~~~~~~~
+Let's replace 37 lines of source code from `Trackbar as the Color Palette`
+tutorial with `ocvproto`-based implementation:
 
-Let's replace 37 lines of source code from `Trackbar as the Color Palette <https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_gui/py_trackbar/py_trackbar.html>`_
-tutorial with ``ocvproto``-based implementation:
+```python
+from ocvproto.toolbox import WindowManager, Canvas
 
-.. code-block:: python
+with WindowManager() as wm:
+    rgb = wm.window.add_trackbar_group(['R', 'G', 'B'], max=255)
+    for _ in wm.app.loop():
+        wm.set_frame(Canvas(512, 300, color=rgb))
+```
 
-    from ocvproto.toolbox import WindowManager, Canvas
+### Camera capture
 
-    with WindowManager() as wm:
-        rgb = wm.window.add_trackbar_group(['R', 'G', 'B'], max=255)
+Now let's capture video camera stream into `ocvproto.avi` file, being able to adjust blur.
+
+Let's also setup config filepath (`ocvproto.json`) — this allows us to store current trackbar values
+(`s` key) and load them (`r` key). It is useful to restore settings between sessions.
+
+We bind `z` key to take camera shots.
+
+```python
+from ocvproto.toolbox import WindowManager, Camera
+
+with WindowManager() as wm:
+
+    wm.app.set_config('ocvproto.json')
+
+    blur = wm.window.add_trackbar_group(['x', 'y'], 'Blur', default=1)
+
+    with Camera() as cam:
+        wm.app.bind_key('z', cam.dump_image)
+
         for _ in wm.app.loop():
-            wm.set_frame(Canvas(512, 300, color=rgb))
+            cam.read()
+            cam.blur(blur)
+            cam.dump()
+            wm.set_frame(cam)
+```
 
+## Requirements
 
-Camera capture
-~~~~~~~~~~~~~~
+* Python 3.10+
+* `opencv-python` (or variants)
 
-Now let's capture video camera stream into ``ocvproto.avi`` file, being able to adjust blur.
+Quick install with third-parties: `$ pip install opencv-proto[all]`
 
-Let's also setup config filepath (``ocvproto.json``) - this allows us to store current trackbar values
-(``s`` key) and load them (``r`` key). It is useful to restore settings between sessions.
+## Documentation
 
-We bind ``z`` key to take camera shots.
-
-.. code-block:: python
-
-    from ocvproto.toolbox import WindowManager, Camera
-
-    with WindowManager() as wm:
-
-        wm.app.set_config('ocvproto.json')
-
-        blur = wm.window.add_trackbar_group(['x', 'y'], 'Blur', default=1)
-
-        with Camera() as cam:
-            wm.app.bind_key('z', cam.dump_image)
-
-            for _ in wm.app.loop():
-                cam.read()
-                cam.blur(blur)
-                cam.dump()
-                wm.set_frame(cam)
-
-
-Read the documentation.
-
-Requirements
-------------
-* Python 3.6+
-* ``opencv-python`` (or variants)
-
-Quick install with third-parties: ``$ pip install opencv-proto[all]``
-
-
-Documentation
--------------
-
-https://opencv-proto.readthedocs.org/
+<https://opencv-proto.readthedocs.io/>

@@ -12,7 +12,7 @@ from ..frame import AnyFrame
 class Property:
     """Represents a capture video property with restrictions."""
 
-    def __init__(self, cv_prop: int, *, max: int = None):
+    def __init__(self, cv_prop: int, *, max: int | None = None):
         self._cv_prop = cv_prop
         self.max = max
 
@@ -47,7 +47,7 @@ class Video(Source):
         """Returns image object from the current frame."""
         return Image(self.frame)
 
-    def dump_image(self, fpath: Union[str, Path] = None):
+    def dump_image(self, fpath: Union[str, Path] | None = None):
         """Dumps the image into a file.
 
         :param fpath: Filepath to store image into.
@@ -103,9 +103,9 @@ class Video(Source):
         properties = {}
 
         cls = self.__class__
-        for cls in [cls] + list(cls.__bases__):
+        for cls_ in [cls, *cls.__bases__]:
 
-            for attr, val in cls.__dict__.items():
+            for attr, val in cls_.__dict__.items():
 
                 if isinstance(val, Property):
                     properties[attr] = {
@@ -120,9 +120,9 @@ class Video(Source):
             self,
             fpath: Union[str, Path] = 'ocvproto.avi',
             *,
-            width: int = None,
-            height: int = None,
-            fps: Union[int, float] = None,
+            width: int | None = None,
+            height: int | None = None,
+            fps: float | None = None,
             codec: str = 'XVID',
     ) -> cv.VideoWriter:
         """Configures write parameters.
